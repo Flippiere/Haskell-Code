@@ -138,11 +138,11 @@ nth 0 = Nothing
 nth n = nth' n [2] 3
   where
     nth' n lstOfPrimes x | length lstOfPrimes == n = Just (head lstOfPrimes)
-                         | donkeyKong lstOfPrimes x = nth' n (x:lstOfPrimes) (x+1)
+                         | nth'' lstOfPrimes x = nth' n (x:lstOfPrimes) (x+1)
                          | otherwise = nth' n lstOfPrimes (x+1)
-    donkeyKong [] x = True
-    donkeyKong (y:ys) x | x `mod` y == 0 = False
-                        | otherwise = donkeyKong ys x
+    nth'' [] x = True
+    nth'' (y:ys) x | x `mod` y == 0 = False
+                   | otherwise = nth'' ys x
 
 annotate :: [String] -> [String]
 annotate board = annotate' 0 0 board board
